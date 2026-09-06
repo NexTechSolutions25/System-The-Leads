@@ -14,13 +14,13 @@ async function api(path, method = "GET", data) {
     "Content-Type": "application/json",
     "X-NexTech-Request": "1",
   };
-  const r = await fetch("/api" + path, {
+  const r = await window.nextechFetch("/api" + path, {
     method,
     headers,
     body: data ? JSON.stringify(data) : undefined,
   });
   if (r.status === 401) {
-    location.replace("/login");
+    location.replace("./login.html");
     throw Error("Sessão encerrada");
   }
   const d = await r.json();
@@ -222,7 +222,7 @@ document.addEventListener("click", async (event) => {
         openLead(id);
         break;
       case "logout": {
-        await fetch("/auth/logout", {
+        await window.nextechFetch("/auth/logout", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -230,7 +230,7 @@ document.addEventListener("click", async (event) => {
           },
           body: "{}",
         });
-        location.replace("/login");
+        location.replace("./login.html");
         return;
       }
       case "start":
@@ -410,7 +410,7 @@ document
     }
     button.disabled = true;
     try {
-      const r = await fetch("/auth/password", {
+      const r = await window.nextechFetch("/auth/password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -423,7 +423,7 @@ document
       });
       const data = await r.json();
       if (!r.ok) throw Error(data.error);
-      location.replace("/login");
+      location.replace("./login.html");
     } catch (e) {
       toast(e.message);
     } finally {

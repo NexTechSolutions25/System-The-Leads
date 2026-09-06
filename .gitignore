@@ -2,3 +2,9 @@ node_modules/
 .env
 data/
 *.log
+
+dist/
+dist-hostinger.zip
+
+dist-frontend/
+frontend-hostinger.zip

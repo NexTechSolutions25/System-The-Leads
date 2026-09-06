@@ -25,6 +25,8 @@ import type { Campaign } from "./types.js";
 
 const app = express();
 app.disable("x-powered-by");
+if (process.env.TRUST_PROXY === "1") app.set("trust proxy", 1);
+const frontendOrigins = new Set((process.env.FRONTEND_ORIGINS || "").split(",").map(s => s.trim()).filter(Boolean));
 app.use(express.json({ limit: "64kb" }));
 app.use((req, res, next) => {
   res.setHeader("X-Content-Type-Options", "nosniff");
@@ -38,14 +40,25 @@ app.use((req, res, next) => {
     "localhost",
     "[::1]",
     config.host,
+    ...(process.env.ALLOWED_HOSTS || "").split(",").map(s => s.trim()),
+    process.env.RENDER_EXTERNAL_HOSTNAME || "",
   ]);
   if (!allowedHosts.has(req.hostname))
     return res.status(403).json({ error: "Host não permitido" });
   if (
     req.headers.origin &&
-    req.headers.origin !== `${req.protocol}://${req.headers.host}`
+    req.headers.origin !== `${req.protocol}://${req.headers.host}` &&
+    !frontendOrigins.has(req.headers.origin)
   )
     return res.status(403).json({ error: "Origem não permitida" });
+  if (req.headers.origin && frontendOrigins.has(req.headers.origin)) {
+    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.vary("Origin");
+    res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, X-NexTech-Request");
+    if (req.method === "OPTIONS") return res.sendStatus(204);
+  }
   next();
 });
 app.use((req, res, next) => {

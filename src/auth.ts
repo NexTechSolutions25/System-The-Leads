@@ -51,8 +51,8 @@ function cookie(req: Request) {
 function options(req: Request) {
   return {
     httpOnly: true,
-    sameSite: "strict" as const,
-    secure: req.secure,
+    sameSite: process.env.COOKIE_CROSS_SITE === "true" ? "none" as const : "strict" as const,
+    secure: process.env.COOKIE_CROSS_SITE === "true" || req.secure,
     path: "/",
   };
 }

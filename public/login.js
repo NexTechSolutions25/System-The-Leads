@@ -2,10 +2,10 @@ const $ = (selector) => document.querySelector(selector);
 let setup = false;
 async function status() {
   try {
-    const response = await fetch("/auth/status");
+    const response = await window.nextechFetch("/auth/status");
     const data = await response.json();
     if (data.user) {
-      location.replace("/");
+      location.replace("./index.html");
       return;
     }
     setup = data.setupRequired;
@@ -56,7 +56,7 @@ $("#login-form").addEventListener("submit", async (event) => {
   }
   $("#submit").disabled = true;
   try {
-    const response = await fetch(setup ? "/auth/setup" : "/auth/login", {
+    const response = await window.nextechFetch(setup ? "/auth/setup" : "/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-NexTech-Request": "1" },
       body: JSON.stringify({
@@ -66,7 +66,7 @@ $("#login-form").addEventListener("submit", async (event) => {
     });
     const data = await response.json();
     if (!response.ok) throw Error(data.error || "Não foi possível entrar.");
-    location.replace("/");
+    location.replace("./index.html");
   } catch (error) {
     $("#error").textContent = error.message;
     $("#submit").disabled = false;

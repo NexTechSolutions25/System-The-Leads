@@ -178,3 +178,15 @@ Os testes `npm run test:mysql` e `npm run test:migration` passaram em uma instâ
 - `src/db.ts`, `src/geography.ts`: persistência e catálogo territorial.
 - `public/`: interface responsiva sem bibliotecas de frontend externas.
 - `tests/`: verificação automatizada e teste de interface.
+
+## Front na Hostinger e API no Render
+
+Execute `npm run build:frontend`. Envie o CONTEUDO de `dist-frontend` para a pasta publica da Hostinger. O pacote contem somente oito arquivos HTML/CSS/JS; nao envie o pacote Node anterior.
+
+Em `config.js`, preencha `window.NEXTECH_API_URL` com a origem HTTPS da API (sem barra final). Nunca coloque senha ou chave nesse arquivo publico. Os caminhos relativos tambem permitem hospedar o front em subpastas.
+
+No Render configure HOST=0.0.0.0, TRUST_PROXY=1, FRONTEND_ORIGINS com a origem exata HTTPS do front (sem caminho ou barra final) e ALLOWED_HOSTS com o hostname da API personalizada. O hostname automatico RENDER_EXTERNAL_HOSTNAME tambem e aceito. Configure MySQL remoto e REDIS_URL; execute `npm start` no servico web e `npm run worker` em um worker separado. O cadastro inicial remoto continua bloqueado: importe o administrador no banco de destino.
+
+Prefira front e API em subdominios HTTPS do mesmo dominio, por exemplo painel.seudominio.com e api.seudominio.com, mantendo COOKIE_CROSS_SITE=false. Se usar dominios diferentes (Hostinger + onrender.com), configure COOKIE_CROSS_SITE=true; navegadores que bloqueiam cookies de terceiros ainda podem impedir o login. A conexao e o login completos devem ser validados com os enderecos reais antes do uso.
+
+Validacao local da separacao: compilacao TypeScript, preflight da origem permitida, bloqueio de origem desconhecida e presenca dos recursos estaticos passaram. Nao representa um teste de hospedagem real.
