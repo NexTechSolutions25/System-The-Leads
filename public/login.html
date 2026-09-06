@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Entrar · NexTech Leads</title>
+    <link rel="stylesheet" href="/login.css" />
+    <script defer src="/login.js"></script>
+  </head>
+  <body>
+    <div class="login-shell">
+      <section class="intro">
+        <a class="brand" href="/login"
+          ><span>N↗</span> NexTech<small>INTELIGÊNCIA COMERCIAL</small></a
+        >
+        <div class="intro-copy">
+          <div class="eyebrow">BRASIL & PARAGUAI</div>
+          <h1>Boas conexões<br />começam aqui.</h1>
+          <p>
+            Suas campanhas, oportunidades e conversas.<br />Organizadas em um só
+            lugar.
+          </p>
+          <div class="flow">
+            <span>Descobrir</span><i>→</i><span>Qualificar</span><i>→</i
+            ><span>Conectar</span>
+          </div>
+        </div>
+        <small class="intro-footer"
+          >NexTech Solutions · Aprovação sempre humana</small
+        >
+      </section>
+      <main class="access">
+        <div class="login-card">
+          <span class="eyebrow">SEU ESPAÇO DE TRABALHO</span>
+          <h2 id="title">Bem-vindo de volta.</h2>
+          <p id="subtitle">Entre para acessar seu painel de leads.</p>
+          <div id="notice" class="notice" role="status">
+            Verificando conexão…
+          </div>
+          <form id="login-form">
+            <label for="username">Usuário</label
+            ><input
+              id="username"
+              name="username"
+              autocomplete="username"
+              minlength="3"
+              maxlength="80"
+              pattern="[a-zA-Z0-9_.@\-]+"
+              value="admin"
+              required
+            /><label for="password">Senha</label>
+            <div class="password-field">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                minlength="8"
+                maxlength="128"
+                placeholder="Sua senha de acesso"
+                required
+              /><button
+                id="toggle-password"
+                type="button"
+                aria-label="Mostrar senha"
+              >
+                Mostrar
+              </button>
+            </div>
+            <div id="confirmation" hidden>
+              <label for="confirm">Confirmar senha</label
+              ><input
+                id="confirm"
+                name="confirm"
+                type="password"
+                autocomplete="new-password"
+                minlength="8"
+                maxlength="128"
+                placeholder="Repita a senha"
+              />
+            </div>
+            <p id="error" class="error" role="alert"></p>
+            <button id="submit" type="submit" disabled>
+              Entrar no painel <span>→</span>
+            </button>
+          </form>
+          <button id="retry" class="retry" type="button" hidden>
+            Verificar conexão novamente
+          </button>
+          <p class="footnote" id="help">
+            A senha do painel é diferente da senha do MySQL.
+          </p>
+        </div>
+        <footer>Acesso protegido · NexTech Leads</footer>
+      </main>
+    </div>
+  </body>
+</html>

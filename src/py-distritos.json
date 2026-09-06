@@ -1,0 +1,1580 @@
+[
+  {
+    "id": "0721",
+    "name": "SAN RAFAEL DEL PARANA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0720",
+    "name": "SAN PEDRO DEL PARANA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0209",
+    "name": "SAN PABLO",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0208",
+    "name": "SAN ESTANISLAO",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0207",
+    "name": "NUEVA GERMANIA",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0206",
+    "name": "LIMA",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0205",
+    "name": "ITACURUBI DEL ROSARIO",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0519",
+    "name": "SIMON BOLIVAR",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1409",
+    "name": "LA PALOMA DEL ESPIRITU SANTO",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0518",
+    "name": "3 DE FEBRERO",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1408",
+    "name": "KATUETE",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0517",
+    "name": "LA PASTORA",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1407",
+    "name": "FRANCISCO CABALLERO ALVAREZ",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0516",
+    "name": "MARISCAL FRANCISCO SOLANO LOPEZ",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1406",
+    "name": "YPEJHU",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0303",
+    "name": "ARROYOS Y ESTEROS",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "0515",
+    "name": "JOSE DOMINGO OCAMPOS",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1405",
+    "name": "ITANARA",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0302",
+    "name": "ALTOS",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "0222",
+    "name": "SAN JOSE DEL ROSARIO",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0514",
+    "name": "RAUL ARSENIO OVIEDO",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1404",
+    "name": "VILLA YGATIMI",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0301",
+    "name": "CAACUPE",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "0221",
+    "name": "SAN VICENTE PANCHOLO",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0513",
+    "name": "R.I. 3 CORRALES",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0220",
+    "name": "LIBERACION",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0409",
+    "name": "ITURBE",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0408",
+    "name": "ITAPE",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0407",
+    "name": "COLONIA INDEPENDENCIA",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0406",
+    "name": "GRAL. EUGENIO A. GARAY",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0719",
+    "name": "SAN COSME Y DAMIAN",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0405",
+    "name": "FELIX PEREZ CARDOZO",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0718",
+    "name": "MAYOR JULIO DIONISIO OTA??O",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0404",
+    "name": "CORONEL MARTINEZ",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0403",
+    "name": "CAPITAN MAURICIO JOSE TROCHE",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0717",
+    "name": "OBLIGADO",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0716",
+    "name": "JOSE LEANDRO OVIEDO",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "1606",
+    "name": "BOQUERON",
+    "region": "BOQUERON",
+    "code": "16"
+  },
+  {
+    "id": "0715",
+    "name": "JESUS",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "1605",
+    "name": "LOMA PLATA",
+    "region": "BOQUERON",
+    "code": "16"
+  },
+  {
+    "id": "0714",
+    "name": "HOHENAU",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "1604",
+    "name": "FILADELFIA",
+    "region": "BOQUERON",
+    "code": "16"
+  },
+  {
+    "id": "0713",
+    "name": "GENERAL DELGADO",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0712",
+    "name": "GENERAL ARTIGAS",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "1602",
+    "name": "MARISCAL JOSE FELIX ESTIGARRIBIA",
+    "region": "BOQUERON",
+    "code": "16"
+  },
+  {
+    "id": "0711",
+    "name": "FRAM",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0730",
+    "name": "ITAPUA POTY",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0219",
+    "name": "YRYBUCUA",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0218",
+    "name": "SANTA ROSA DEL AGUARAY",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0217",
+    "name": "CAPIIBARY",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0216",
+    "name": "GUAJAYVI",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "1416",
+    "name": "LAUREL",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "1415",
+    "name": "PUERTO ADELA",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0418",
+    "name": "TEBICUARY",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0417",
+    "name": "PASO YOBAI",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0416",
+    "name": "DOCTOR BOTTRELL",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "1306",
+    "name": "CERRO CORA",
+    "region": "AMAMBAY",
+    "code": "13"
+  },
+  {
+    "id": "0415",
+    "name": "YATAITY",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "1305",
+    "name": "KARAPAI",
+    "region": "AMAMBAY",
+    "code": "13"
+  },
+  {
+    "id": "0729",
+    "name": "PIRAPO",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0414",
+    "name": "SAN SALVADOR",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0728",
+    "name": "SAN JUAN DEL PARANA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0727",
+    "name": "YATYTAY",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0726",
+    "name": "LA PAZ",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0725",
+    "name": "ALTO VERA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0724",
+    "name": "TOMAS ROMERO PEREIRA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0723",
+    "name": "EDELIRA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0722",
+    "name": "TRINIDAD",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0909",
+    "name": "PIRAYU",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0908",
+    "name": "MBUYAPEY",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0907",
+    "name": "LA COLMENA",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0906",
+    "name": "ESCOBAR",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0905",
+    "name": "CARAPEGUA",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0904",
+    "name": "CABALLERO",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0903",
+    "name": "CAAPUCU",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0902",
+    "name": "ACAHAY",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0901",
+    "name": "PARAGUARI",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "1007",
+    "name": "JUAN E. O'LEARY",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1502",
+    "name": "BENJAMIN ACEVAL",
+    "region": "PRESIDENTE HAYES",
+    "code": "15"
+  },
+  {
+    "id": "1006",
+    "name": "ITAKYRY",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "0611",
+    "name": "3 DE MAYO",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "1005",
+    "name": "HERNANDARIAS",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "0610",
+    "name": "YUTY",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "1004",
+    "name": "DR. JUAN LEON MALLORQUIN",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1003",
+    "name": "DOMINGO MARTINEZ DE IRALA",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1002",
+    "name": "PRESIDENTE FRANCO",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1001",
+    "name": "CIUDAD DEL ESTE",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "0918",
+    "name": "MARIA ANTONIA",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0917",
+    "name": "YBYTYMI",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0916",
+    "name": "YBYCUI",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0915",
+    "name": "YAGUARON",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0501",
+    "name": "CORONEL OVIEDO",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0914",
+    "name": "TEBICUARY-MI",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0913",
+    "name": "SAPUCAI",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0912",
+    "name": "ROQUE GONZALEZ DE SANTA CRUZ",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0911",
+    "name": "QUYQUYHO",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0910",
+    "name": "QUIINDY",
+    "region": "PARAGUARI",
+    "code": "09"
+  },
+  {
+    "id": "0609",
+    "name": "YEGROS",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "0809",
+    "name": "VILLA FLORIDA",
+    "region": "MISIONES",
+    "code": "08"
+  },
+  {
+    "id": "0608",
+    "name": "TAVAI",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "0808",
+    "name": "SANTIAGO",
+    "region": "MISIONES",
+    "code": "08"
+  },
+  {
+    "id": "0607",
+    "name": "SAN JUAN NEPOMUCENO",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "0807",
+    "name": "SANTA ROSA",
+    "region": "MISIONES",
+    "code": "08"
+  },
+  {
+    "id": "0806",
+    "name": "SANTA MARIA",
+    "region": "MISIONES",
+    "code": "08"
+  },
+  {
+    "id": "0606",
+    "name": "MACIEL",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "0605",
+    "name": "GRAL. HIGINIO MORINIGO",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "0805",
+    "name": "SAN PATRICIO",
+    "region": "MISIONES",
+    "code": "08"
+  },
+  {
+    "id": "0604",
+    "name": "DR. MOISES S. BERTONI",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "0804",
+    "name": "SAN MIGUEL",
+    "region": "MISIONES",
+    "code": "08"
+  },
+  {
+    "id": "0603",
+    "name": "BUENA VISTA",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "0803",
+    "name": "SAN IGNACIO",
+    "region": "MISIONES",
+    "code": "08"
+  },
+  {
+    "id": "0602",
+    "name": "ABAI",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "1018",
+    "name": "SAN ALBERTO",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "0802",
+    "name": "AYOLAS",
+    "region": "MISIONES",
+    "code": "08"
+  },
+  {
+    "id": "0601",
+    "name": "CAAZAPA",
+    "region": "CAAZAPA",
+    "code": "06"
+  },
+  {
+    "id": "1017",
+    "name": "MBARACAYU",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "0801",
+    "name": "SAN JUAN BAUTISTA DE LAS MISIONES",
+    "region": "MISIONES",
+    "code": "08"
+  },
+  {
+    "id": "1016",
+    "name": "MINGA PORA",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1511",
+    "name": "NUEVA ASUNCION",
+    "region": "PRESIDENTE HAYES",
+    "code": "15"
+  },
+  {
+    "id": "1015",
+    "name": "SANTA ROSA DEL MONDAY",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1510",
+    "name": "CAMPO ACEVAL",
+    "region": "PRESIDENTE HAYES",
+    "code": "15"
+  },
+  {
+    "id": "1014",
+    "name": "NARANJAL",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1013",
+    "name": "SANTA RITA",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1012",
+    "name": "SAN CRISTOBAL",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1011",
+    "name": "MINGA GUAZU",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1010",
+    "name": "LOS CEDRALES",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1118",
+    "name": "YPANE",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1509",
+    "name": "GENERAL JOSE MARIA BRUGUEZ",
+    "region": "PRESIDENTE HAYES",
+    "code": "15"
+  },
+  {
+    "id": "1508",
+    "name": "TENIENTE ESTEBAN MARTINEZ",
+    "region": "PRESIDENTE HAYES",
+    "code": "15"
+  },
+  {
+    "id": "1507",
+    "name": "TTE 1RO MANUEL IRALA FERNANDEZ",
+    "region": "PRESIDENTE HAYES",
+    "code": "15"
+  },
+  {
+    "id": "1506",
+    "name": "JOSE FALCON",
+    "region": "PRESIDENTE HAYES",
+    "code": "15"
+  },
+  {
+    "id": "1009",
+    "name": "YGUAZU",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1505",
+    "name": "NANAWA",
+    "region": "PRESIDENTE HAYES",
+    "code": "15"
+  },
+  {
+    "id": "1008",
+    "name": "ÑACUNDAY",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1504",
+    "name": "VILLA HAYES",
+    "region": "PRESIDENTE HAYES",
+    "code": "15"
+  },
+  {
+    "id": "1503",
+    "name": "PUERTO PINASCO",
+    "region": "PRESIDENTE HAYES",
+    "code": "15"
+  },
+  {
+    "id": "0810",
+    "name": "YABEBYRY",
+    "region": "MISIONES",
+    "code": "08"
+  },
+  {
+    "id": "1022",
+    "name": "DR. RAUL PE?A",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1021",
+    "name": "TAVAPY",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1020",
+    "name": "SANTA FE DEL PARANA",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "1705",
+    "name": "CARMELO PERALTA",
+    "region": "ALTO PARAGUAY",
+    "code": "17"
+  },
+  {
+    "id": "1704",
+    "name": "BAHIA NEGRA",
+    "region": "ALTO PARAGUAY",
+    "code": "17"
+  },
+  {
+    "id": "1702",
+    "name": "PUERTO CASADO",
+    "region": "ALTO PARAGUAY",
+    "code": "17"
+  },
+  {
+    "id": "1701",
+    "name": "FUERTE OLIMPO",
+    "region": "ALTO PARAGUAY",
+    "code": "17"
+  },
+  {
+    "id": "1019",
+    "name": "IRUÑA",
+    "region": "ALTO PARANA",
+    "code": "10"
+  },
+  {
+    "id": "0114",
+    "name": "ITACUA",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0113",
+    "name": "PASO HORQUETA",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0112",
+    "name": "ARROYITO",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0111",
+    "name": "PASO BARRETO",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0110",
+    "name": "SAN ALFREDO",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "1205",
+    "name": "GRAL. JOSE EDUVIGIS DIAZ",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0314",
+    "name": "PIRIBEBUY",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1204",
+    "name": "DESMOCHADOS",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0313",
+    "name": "NUEVA COLOMBIA",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1203",
+    "name": "CERRITO",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0312",
+    "name": "MBOCAYATY DEL YHAGUY",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1202",
+    "name": "ALBERDI",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0311",
+    "name": "LOMA GRANDE",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1201",
+    "name": "PILAR",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0310",
+    "name": "JUAN DE MENA",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "0109",
+    "name": "SARGENTO JOSE FELIX LOPEZ",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0108",
+    "name": "AZOTE'Y",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0107",
+    "name": "YBY YAU",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0106",
+    "name": "SAN LAZARO",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0309",
+    "name": "ITACURUBI DE LA CORDILLERA",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "0308",
+    "name": "ISLA PUCU",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "0307",
+    "name": "EUSEBIO AYALA",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "0306",
+    "name": "EMBOSCADA",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "0305",
+    "name": "CARAGUATAY",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "0304",
+    "name": "ATYRA",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1216",
+    "name": "VILLALBIN",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "1215",
+    "name": "VILLA OLIVA",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "1214",
+    "name": "VILLA FRANCA",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "1213",
+    "name": "TACUARAS",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "1212",
+    "name": "SAN JUAN BAUTISTA DE ÑEEMBUCU",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "1211",
+    "name": "PASO DE PATRIA",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0320",
+    "name": "SAN JOSE OBRERO",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1210",
+    "name": "MAYOR JOSE DE JESUS MARTINEZ",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0319",
+    "name": "VALENZUELA",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1209",
+    "name": "LAURELES",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0318",
+    "name": "TOBATI",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1208",
+    "name": "ISLA UMBU",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0317",
+    "name": "SANTA ELENA",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1207",
+    "name": "HUMAITA",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0316",
+    "name": "SAN BERNARDINO",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1206",
+    "name": "GUAZU CUA",
+    "region": "ÑEEMBUCU",
+    "code": "12"
+  },
+  {
+    "id": "0315",
+    "name": "PRIMERO DE MARZO",
+    "region": "CORDILLERA",
+    "code": "03"
+  },
+  {
+    "id": "1106",
+    "name": "ITAUGUA",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1105",
+    "name": "ITA",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1103",
+    "name": "FERNANDO DE LA MORA",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1102",
+    "name": "CAPIATA",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1101",
+    "name": "AREGUA",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1117",
+    "name": "YPACARAI",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1116",
+    "name": "VILLETA",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1115",
+    "name": "VILLA ELISA",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1114",
+    "name": "SAN LORENZO",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1113",
+    "name": "SAN ANTONIO",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1112",
+    "name": "ÑEMBY",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1111",
+    "name": "NUEVA ITALIA",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1110",
+    "name": "MARIANO ROQUE ALONSO",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1109",
+    "name": "LUQUE",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1108",
+    "name": "LIMPIO",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1107",
+    "name": "LAMBARE",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "0204",
+    "name": "GENERAL ELIZARDO AQUINO",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0203",
+    "name": "CHORE",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0202",
+    "name": "ANTEQUERA",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0201",
+    "name": "SAN PEDRO DEL YCUAMANDYYU",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "1403",
+    "name": "VILLA CURUGUATY",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0512",
+    "name": "DR. J. EULOGIO ESTIGARRIBIA",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1402",
+    "name": "CORPUS CHRISTI",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0511",
+    "name": "YHU",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1401",
+    "name": "SALTO DEL GUAIRA",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0510",
+    "name": "SAN JOSE DE LOS ARROYOS",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0402",
+    "name": "BORJA",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0401",
+    "name": "VILLARRICA",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0710",
+    "name": "NATALIO",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0509",
+    "name": "SAN JOAQUIN",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0508",
+    "name": "NUEVA LONDRES",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0215",
+    "name": "YATAITY DEL NORTE",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0507",
+    "name": "REPATRIACION",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0214",
+    "name": "GENERAL FRANCISCO ISIDORO RESQUIN",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0506",
+    "name": "DR. JUAN MANUEL FRUTOS",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0213",
+    "name": "VILLA DEL ROSARIO",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0505",
+    "name": "SANTA ROSA DEL MBUTUY",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0212",
+    "name": "25 DE DICIEMBRE",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0504",
+    "name": "DR. CECILIO BAEZ",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0211",
+    "name": "UNION",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0503",
+    "name": "CARAYAO",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0210",
+    "name": "TACUATI",
+    "region": "SAN PEDRO",
+    "code": "02"
+  },
+  {
+    "id": "0502",
+    "name": "CAAGUAZU",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1414",
+    "name": "MARACANA",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "1413",
+    "name": "YBY PYTA",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0522",
+    "name": "NUEVA TOLEDO",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1412",
+    "name": "YBYRAROBANA",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "1411",
+    "name": "YASY KAÃ‘Y",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0521",
+    "name": "TEMBIAPORA",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "0520",
+    "name": "VAQUERIA",
+    "region": "CAAGUAZU",
+    "code": "05"
+  },
+  {
+    "id": "1410",
+    "name": "NUEVA ESPERANZA",
+    "region": "CANINDEYU",
+    "code": "14"
+  },
+  {
+    "id": "0105",
+    "name": "SAN CARLOS DEL APA",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0104",
+    "name": "LORETO",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0709",
+    "name": "CARLOS ANTONIO LOPEZ",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0103",
+    "name": "HORQUETA",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0708",
+    "name": "CORONEL BOGADO",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0102",
+    "name": "BELEN",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0707",
+    "name": "CARMEN DEL PARANA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0101",
+    "name": "CONCEPCION",
+    "region": "CONCEPCION",
+    "code": "01"
+  },
+  {
+    "id": "0706",
+    "name": "NUEVA ALBORADA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "1304",
+    "name": "ZANJA PYTA",
+    "region": "AMAMBAY",
+    "code": "13"
+  },
+  {
+    "id": "0705",
+    "name": "CAPITAN MIRANDA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0413",
+    "name": "ÑUMI",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "1303",
+    "name": "CAPITAN BADO",
+    "region": "AMAMBAY",
+    "code": "13"
+  },
+  {
+    "id": "0704",
+    "name": "CAPITAN MEZA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0412",
+    "name": "NATALICIO TALAVERA",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "1302",
+    "name": "BELLA VISTA",
+    "region": "AMAMBAY",
+    "code": "13"
+  },
+  {
+    "id": "0703",
+    "name": "CAMBYRETA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0411",
+    "name": "MBOCAYATY",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "1301",
+    "name": "PEDRO JUAN CABALLERO",
+    "region": "AMAMBAY",
+    "code": "13"
+  },
+  {
+    "id": "0702",
+    "name": "BELLA VISTA",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0410",
+    "name": "JOSE FASSARDI",
+    "region": "GUAIRA",
+    "code": "04"
+  },
+  {
+    "id": "0701",
+    "name": "ENCARNACION",
+    "region": "ITAPUA",
+    "code": "07"
+  },
+  {
+    "id": "0000",
+    "name": "ASUNCION",
+    "region": "ASUNCION",
+    "code": "00"
+  },
+  {
+    "id": "1119",
+    "name": "J. AUGUSTO SALDIVAR",
+    "region": "CENTRAL",
+    "code": "11"
+  },
+  {
+    "id": "1104",
+    "name": "GUARAMBARE",
+    "region": "CENTRAL",
+    "code": "11"
+  }
+]

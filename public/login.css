@@ -1,0 +1,278 @@
+:root {
+  --ink: #17353b;
+  --green: #187c68;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font:
+    14px "Segoe UI",
+    Arial,
+    sans-serif;
+  color: var(--ink);
+  background: #f8faf9;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+.login-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.intro {
+  background: #143139;
+  padding: 55px 65px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.intro:after {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border: 1px solid #2b5258;
+  border-radius: 50%;
+  right: -270px;
+  bottom: 70px;
+  box-shadow:
+    0 0 0 70px #21464a33,
+    0 0 0 140px #21464a22;
+}
+.brand {
+  font-size: 27px;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  width: 230px;
+  position: relative;
+  z-index: 1;
+}
+.brand > span {
+  font-size: 37px;
+  color: #83daba;
+  margin-right: 10px;
+}
+.brand small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 2.3px;
+  margin-left: 78px;
+  margin-top: 2px;
+  color: #a0b8bb;
+}
+.intro-copy {
+  margin: auto 0;
+  position: relative;
+  z-index: 1;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--green);
+}
+.intro .eyebrow {
+  color: #89cbb8;
+}
+.intro h1 {
+  font-size: clamp(35px, 4vw, 58px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -2px;
+  margin: 22px 0;
+}
+.intro p {
+  color: #afc6c9;
+  line-height: 1.9;
+  font-size: 15px;
+}
+.flow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 37px;
+  color: #d5e9e3;
+  font-size: 11px;
+}
+.flow span {
+  border: 1px solid #355a5d;
+  border-radius: 20px;
+  padding: 9px 15px;
+}
+.flow i {
+  color: #699d91;
+  font-style: normal;
+}
+.intro-footer {
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: #8eafb1;
+}
+.access {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 55px 35px;
+  position: relative;
+}
+.login-card {
+  width: 100%;
+  max-width: 380px;
+}
+.login-card h2 {
+  font-size: 30px;
+  letter-spacing: -1px;
+  font-weight: 600;
+  margin: 17px 0 10px;
+}
+.login-card p {
+  color: #71868a;
+  line-height: 1.7;
+  margin: 0 0 25px;
+}
+.notice {
+  background: #edf4f0;
+  border: 1px solid #dce9e1;
+  color: #537767;
+  padding: 12px 14px;
+  border-radius: 7px;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 22px 0;
+}
+.notice.warning {
+  background: #fff7e7;
+  border-color: #f0e1c4;
+  color: #856633;
+}
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 22px 0 9px;
+}
+input {
+  display: block;
+  width: 100%;
+  background: white;
+  border: 1px solid #d5dfdc;
+  padding: 14px;
+  border-radius: 7px;
+  color: var(--ink);
+  outline: none;
+}
+input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px #187c6815;
+}
+.password-field {
+  position: relative;
+}
+.password-field input {
+  padding-right: 75px;
+}
+.password-field button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: 0;
+  background: transparent;
+  padding: 6px;
+  color: #71868a;
+  font-size: 11px;
+}
+#submit {
+  background: var(--green);
+  border: 0;
+  border-radius: 7px;
+  width: 100%;
+  color: white;
+  padding: 15px 18px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-top: 24px;
+}
+#submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.login-card .error {
+  color: #a33b35;
+  font-size: 12px;
+  margin: 14px 0 0;
+}
+.login-card .footnote {
+  text-align: center;
+  font-size: 11px;
+  margin-top: 25px;
+  color: #8a9b9c;
+}
+.retry {
+  background: none;
+  border: 0;
+  color: var(--green);
+  text-decoration: underline;
+  margin-top: 18px;
+  padding: 0;
+  font-size: 12px;
+}
+.access footer {
+  position: absolute;
+  bottom: 25px;
+  font-size: 10px;
+  color: #9aabaa;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #79cbb3;
+  outline-offset: 3px;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 800px) {
+  .login-shell {
+    grid-template-columns: 1fr;
+  }
+  .intro {
+    min-height: auto;
+    padding: 26px 28px;
+  }
+  .intro-copy,
+  .intro-footer {
+    display: none;
+  }
+  .brand {
+    font-size: 23px;
+  }
+  .brand > span {
+    font-size: 29px;
+  }
+  .brand small {
+    margin-left: 68px;
+    font-size: 7px;
+  }
+  .access {
+    min-height: calc(100vh - 112px);
+    padding: 45px 25px 75px;
+  }
+  .login-card h2 {
+    font-size: 28px;
+  }
+  .access footer {
+    bottom: 20px;
+  }
+}

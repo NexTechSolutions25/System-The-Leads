@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NexTech · Inteligência comercial</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script defer="" src="/app.js"></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="/"
+        >N<span>↗</span>
+        <strong>NexTech<small>INTELIGÊNCIA COMERCIAL</small></strong></a
+      >
+      <div class="workspace">WORKSPACE <b>Operação de crescimento</b></div>
+      <nav>
+        <button data-tab="overview" class="active">
+          ◫ <span>Visão geral</span></button
+        ><button data-tab="campaigns">◎ <span>Campanhas</span></button
+        ><button data-tab="approval">
+          ✓ <span>Fila de aprovação</span><b id="pending-count">0</b></button
+        ><button data-tab="pipeline">▥ <span>Pipeline</span></button
+        ><button data-tab="settings">⚙ <span>Configuração</span></button>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="dot"></span> Brasil &amp; Paraguai
+        <p>Prospecção com contexto.<br />Decisões sempre humanas.</p>
+      </div>
+    </aside>
+    <main>
+      <header>
+        <div class="breadcrumb">
+          Workspace <span>/</span> <b id="page-title">Visão geral</b>
+        </div>
+        <div class="header-right">
+          <span id="queue-health">Verificando fila…</span
+          ><span class="avatar">NT</span
+          ><button data-action="logout" class="logout">Sair</button>
+        </div>
+      </header>
+      <div class="content">
+        <div id="mode-banner" role="status"></div>
+        <section id="overview" class="tab">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">SEU PRÓXIMO CLIENTE COMEÇA AQUI</div>
+              <h1>Oportunidades, com direção.</h1>
+              <p>
+                Encontre empresas. Entenda o contexto. Comece boas conversas.
+              </p>
+            </div>
+            <button class="primary" data-action="new">+ Nova campanha</button>
+          </div>
+          <div class="metrics">
+            <article>
+              <span>Empresas captadas</span><b id="m-leads">0</b
+              ><small>Registros únicos na sua base</small>
+            </article>
+            <article>
+              <span>Aguardando revisão</span><b id="m-pending">0</b
+              ><small>Oportunidades para avaliar</small>
+            </article>
+            <article>
+              <span>No pipeline</span><b id="m-pipeline">0</b
+              ><small>Aprovadas por você</small>
+            </article>
+            <article>
+              <span>Consumo estimado · USD</span><b id="m-cost">$0.00</b
+              ><small>Custos reservados nas consultas</small>
+            </article>
+          </div>
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Monitor de captação</h2>
+                <p>Acompanhe cada etapa da descoberta à qualificação.</p>
+              </div>
+              <span class="chip">Atualização a cada 5s</span>
+            </div>
+            <div id="runs"></div>
+          </div>
+          <div class="bottom-grid">
+            <div class="panel explainer">
+              <div class="eyebrow">COMO FUNCIONA</div>
+              <h2>Da busca à conversa,<br />você tem o controle.</h2>
+              <div class="steps">
+                <span>01 <b>Capture</b><small>Fontes autorizadas</small></span
+                ><span
+                  >02 <b>Qualifique</b
+                  ><small>Evidências verificáveis</small></span
+                ><span
+                  >03 <b>Aprove</b><small>Sua revisão, sua decisão</small></span
+                >
+              </div>
+            </div>
+            <div class="panel geography">
+              <span>DOIS MERCADOS. UMA OPERAÇÃO.</span>
+              <h2>Brasil <i>↔</i> Paraguai</h2>
+              <p>
+                Buscas divididas por cidade, com abordagens em português e
+                espanhol.
+              </p>
+              <b>BR +55 <span>•</span> PY +595</b>
+            </div>
+          </div>
+        </section>
+        <section id="campaigns" class="tab hidden">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">DESCOBERTA</div>
+              <h1>Suas campanhas</h1>
+              <p>Território, segmento e objetivo em cada pesquisa.</p>
+            </div>
+            <button class="primary" data-action="new">+ Nova campanha</button>
+          </div>
+          <div id="campaign-list" class="card-grid"></div>
+        </section>
+        <section id="approval" class="tab hidden">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">DECISÃO HUMANA</div>
+              <h1>Fila de aprovação</h1>
+              <p>
+                Confira as evidências e personalize a conversa antes de avançar.
+              </p>
+            </div>
+            <select id="approval-filter" aria-label="Filtrar leads">
+              <option value="pending">Aguardando revisão</option>
+              <option value="approved">Aprovados</option>
+              <option value="rejected">Rejeitados</option>
+              <option value="all">Todos os leads</option>
+            </select>
+          </div>
+          <div id="approval-list" class="card-grid"></div>
+        </section>
+        <section id="pipeline" class="tab hidden">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">RELACIONAMENTO</div>
+              <h1>Pipeline comercial</h1>
+              <p>Empresas aprovadas e transferidas manualmente.</p>
+            </div>
+          </div>
+          <div id="pipeline-list" class="card-grid"></div>
+        </section>
+        <section id="settings" class="tab hidden">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">SUA OPERAÇÃO</div>
+              <h1>Configuração</h1>
+            </div>
+          </div>
+          <div class="panel settings">
+            <h2>Provedor e execução</h2>
+            <div id="settings-status"></div>
+            <h3>Conectar o ambiente</h3>
+            <ol>
+              <li>Copie <code>.env.example</code> para <code>.env</code>.</li>
+              <li>
+                Configure <code>REDIS_URL</code> e execute
+                <code>npm run worker</code>.
+              </li>
+              <li>
+                Para captação real, configure
+                <code>GOOGLE_PLACES_API_KEY</code> com Places API (New) e
+                faturamento habilitados.
+              </li>
+              <li>
+                O uso dos dados do Google em CRM depende de direitos de
+                armazenamento expressamente autorizados. Consulte o README antes
+                de ativar.
+              </li>
+              <li>
+                Cadastre em <code>WEBSITE_ALLOWED_HOSTS</code> os domínios cujos
+                termos permitem análise. O analisador também verifica
+                robots.txt.
+              </li>
+            </ol>
+            <p>
+              As chaves ficam no servidor. Nenhuma mensagem é enviada
+              automaticamente.
+            </p>
+            <h3>Senha de acesso ao painel</h3>
+            <form id="password-form">
+              <label
+                >Senha atual<input
+                  id="current-password"
+                  type="password"
+                  autocomplete="current-password"
+                  required="" /></label
+              ><label
+                >Nova senha<input
+                  id="new-password"
+                  type="password"
+                  minlength="8"
+                  maxlength="128"
+                  autocomplete="new-password"
+                  required="" /></label
+              ><label
+                >Confirmar nova senha<input
+                  id="repeat-password"
+                  type="password"
+                  minlength="8"
+                  maxlength="128"
+                  autocomplete="new-password"
+                  required="" /></label
+              ><button type="submit">Alterar senha</button>
+              <p class="note">
+                Ao alterar a senha, todas as sessões são encerradas.
+              </p>
+            </form>
+            <h3>Privacidade e dados</h3>
+            <p>
+              Use somente contatos comerciais públicos ou autorizados. A
+              exclusão remove o registro, análises e evidências. São preservados
+              hashes de bloqueio para evitar recaptura; isso é pseudonimização,
+              não anonimização irreversível. Dados de demonstração nunca
+              habilitam contato.
+            </p>
+            <p>
+              Google Places:
+              <a
+                href="https://developers.google.com/maps/documentation/places/web-service/policies"
+                target="_blank"
+                rel="noopener noreferrer"
+                >políticas e atribuição</a
+              >. Catálogos: IBGE e INE, Censo Paraguai 2022. Cadastros
+              territoriais podem ter alterações posteriores.
+            </p>
+          </div>
+        </section>
+      </div>
+      <footer>
+        NexTech Solutions <span>Descoberta inteligente · Aprovação humana</span>
+      </footer>
+    </main>
+    <dialog id="campaign-dialog">
+      <form id="campaign-form">
+        <div class="dialog-heading">
+          <div>
+            <span class="eyebrow">NOVA PESQUISA</span>
+            <h2>Criar campanha</h2>
+          </div>
+          <button
+            type="button"
+            class="icon"
+            data-close="campaign-dialog"
+            aria-label="Fechar"
+          >
+            ×
+          </button>
+        </div>
+        <label
+          >Nome da campanha<input
+            name="name"
+            required=""
+            minlength="2"
+            placeholder="Imobiliárias em Dourados"
+        /></label>
+        <div class="form-grid">
+          <label
+            >País<select name="country" id="country">
+              <option value="BR">Brasil</option>
+              <option value="PY">Paraguai</option>
+            </select></label
+          ><label
+            >Idioma da abordagem<select name="language" id="language">
+              <option value="pt-BR">Português do Brasil</option>
+              <option value="es">Español</option>
+              <option value="both">Português e espanhol</option>
+            </select></label
+          ><label
+            >Abrangência<select name="scope" id="scope">
+              <option value="city">Uma cidade</option>
+              <option value="custom">Lista de cidades</option>
+              <option value="region">Todas as cidades da região</option>
+              <option value="national">Nacional · lotes por cidade</option>
+            </select></label
+          ><label
+            >Estado / departamento<select name="region" id="region"></select
+          ></label>
+        </div>
+        <label id="city-label">Cidade<select id="city"></select></label
+        ><label id="custom-label" class="hidden"
+          >Cidades, separadas por ponto e vírgula<textarea
+            id="custom-cities"
+            placeholder="Dourados; Campo Grande"
+          ></textarea>
+        </label>
+        <div class="form-grid">
+          <label
+            >Segmento<input
+              name="segment"
+              required=""
+              minlength="2"
+              placeholder="Imobiliárias" /></label
+          ><label
+            >Palavras-chave, separadas por vírgula<input
+              name="keywords"
+              placeholder="Aluguel, compra e venda"
+          /></label>
+        </div>
+        <label
+          >Serviço oferecido<select name="service">
+            <option>site institucional</option>
+            <option>landing page</option>
+            <option>catálogo digital</option>
+            <option>sistema de gestão</option>
+            <option>CRM</option>
+            <option>sistema sob medida</option>
+            <option>automação de atendimento</option>
+            <option>automação comercial</option>
+            <option>integração entre sistemas</option>
+            <option>site integrado a um painel administrativo</option>
+          </select></label
+        >
+        <div class="form-grid four">
+          <label
+            >Máximo de leads<input
+              name="maxLeads"
+              type="number"
+              min="1"
+              max="10000"
+              value="50"
+              required="" /></label
+          ><label
+            >Pontuação mínima<input
+              name="minScore"
+              type="number"
+              min="0"
+              max="100"
+              value="40"
+              required="" /></label
+          ><label
+            >Limite de consultas<input
+              name="maxRequests"
+              type="number"
+              min="1"
+              max="100000"
+              value="100"
+              required="" /></label
+          ><label
+            >Orçamento · USD<input
+              name="maxCost"
+              type="number"
+              min="0.01"
+              max="10000"
+              step="0.01"
+              value="5"
+              required=""
+          /></label>
+        </div>
+        <div class="form-grid">
+          <label
+            >Execução<select id="frequency">
+              <option value="manual">Manual</option>
+              <option value="daily">Diária</option>
+              <option value="weekly">Semanal</option>
+            </select></label
+          ><label
+            >Horário<input id="schedule-time" type="time" value="09:00"
+          /></label>
+        </div>
+        <fieldset id="days">
+          <legend>Dias da semana (para execução semanal)</legend>
+          <label><input type="checkbox" value="1" checked="" />Seg</label
+          ><label><input type="checkbox" value="2" />Ter</label
+          ><label><input type="checkbox" value="3" />Qua</label
+          ><label><input type="checkbox" value="4" />Qui</label
+          ><label><input type="checkbox" value="5" />Sex</label
+          ><label><input type="checkbox" value="6" />Sáb</label
+          ><label><input type="checkbox" value="0" />Dom</label>
+        </fieldset>
+        <p class="note">
+          Horário local do país. Buscas regionais e nacionais usam o catálogo
+          disponível, com limites de custo e resultados.
+        </p>
+        <div id="form-error" class="error" role="alert"></div>
+        <div class="dialog-actions">
+          <button type="button" data-close="campaign-dialog">Cancelar</button
+          ><button class="primary" type="submit">Criar campanha</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="lead-dialog"><div id="lead-detail"></div></dialog>
+    <div id="toast" role="status" class="hidden"></div>
+  </body>
+</html>
