@@ -20,6 +20,7 @@ import {
   transaction,
   initDB,
   databaseMessage,
+  logDatabaseError,
 } from "./db.js";
 import { config, now } from "./config.js";
 const scrypt = promisify(scryptCallback);
@@ -148,7 +149,8 @@ authRouter.get("/status", async (req, res) => {
       setupRequired: users.length === 0,
       user: user || null,
     });
-  } catch {
+  } catch (error) {
+    logDatabaseError(error, "auth-status");
     res.json({
       databaseReady: false,
       database: config.dbDriver,

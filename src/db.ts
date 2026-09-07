@@ -47,6 +47,11 @@ function table(t: string) {
   if (!allowed.has(t)) throw Error("Tabela inválida");
   return "`" + t + "`";
 }
+export function logDatabaseError(error: unknown, stage: string) {
+  const e = error as { code?: unknown; errno?: unknown };
+  const code = typeof e?.code === "string" && /^[A-Z0-9_]{1,64}$/.test(e.code) ? e.code : "UNKNOWN";
+  console.error("[database]", JSON.stringify({ stage, code, errno: typeof e?.errno === "number" ? e.errno : undefined }));
+}
 export function databaseMessage() {
   return config.dbDriver === "mysql"
     ? "Não foi possível conectar ao MySQL. Confira MYSQL_HOST, MYSQL_PORT, MYSQL_DATABASE, MYSQL_USER e MYSQL_PASSWORD no arquivo .env e reinicie a aplicação."
@@ -106,7 +111,8 @@ export async function initDB() {
           "CREATE TABLE IF NOT EXISTS AppMutex (id INT NOT NULL PRIMARY KEY) ENGINE=InnoDB",
         );
         await pool.query("INSERT IGNORE INTO AppMutex(id) VALUES(1)");
-      } catch {
+      } catch (error) {
+        logDatabaseError(error, "mysql-init");
         await pool.end().catch(() => {});
         pool = undefined;
         throw Error(databaseMessage());
