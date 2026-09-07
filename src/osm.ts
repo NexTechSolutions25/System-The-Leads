@@ -1,9 +1,12 @@
+import { Agent } from "undici";
 import { phone, safeUrl, normalize } from "./normalize.js";
 import { now, sleep } from "./config.js";
 import { regions, cities } from "./geography.js";
 import { get, put, transaction } from "./db.js";
 import type { Meter } from "./providers.js";
 import type { LeadProvider, LeadSearchInput, ExternalLead } from "./types.js";
+// Scope IPv4 selection to the public source client; keep normal TLS validation.
+const osmDispatcher = new Agent({ connect: { family: 4, timeout: 15000 }, headersTimeout: 40000, bodyTimeout: 40000 });
 const quote = (s: string) => JSON.stringify(s);
 const escapeRegex = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 export function osmQuery(i: LeadSearchInput) {
@@ -159,6 +162,7 @@ export class OpenStreetMapProvider implements LeadProvider {
           const url = new URL(endpoints[attempt]);
           url.searchParams.set("data", query);
           const r = await fetch(url, {
+            ...{ dispatcher: osmDispatcher },
             headers: {
               "User-Agent":
                 "NexTech-Leads/1.0 (+https://github.com/NexTechSolutions25/System-The-Leads)",
