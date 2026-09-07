@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { put, transaction } from "./db.js";
+import { put, putMany, transaction } from "./db.js";
 import { normalize } from "./normalize.js";
 import type { Campaign, CountryCode, LeadSearchInput } from "./types.js";
 export interface City {
@@ -37,8 +37,8 @@ export async function seedGeo() {
       { id: "PY", name: "Paraguay", language: "es", dial: "+595" },
     ])
       await put("Country", c.id, c);
-    for (const r of regions) await put("Region", r.id, r);
-    for (const c of cities) await put("City", c.country + "-" + c.id, c);
+    await putMany("Region", regions.map(r => ({ id: r.id, data: r })));
+    await putMany("City", cities.map(c => ({ id: c.country + "-" + c.id, data: c })));
     await put("LeadProvider", "google_places", {
       id: "google_places",
       countries: ["BR", "PY"],

@@ -198,6 +198,16 @@ export async function put(t: string, id: string, data: unknown) {
     ]);
   });
 }
+export async function putMany(t: string, entries: { id: string; data: unknown }[]) {
+  return transaction(async () => {
+    const target = table(t);
+    const suffix = config.dbDriver === "mysql" ? "ON DUPLICATE KEY UPDATE data=VALUES(data)" : "ON CONFLICT(id) DO UPDATE SET data=excluded.data";
+    for (let i = 0; i < entries.length; i += 200) {
+      const batch = entries.slice(i, i + 200);
+      await query(`INSERT INTO ${target}(id,data) VALUES ${batch.map(() => "(?,?)").join(",")} ${suffix}`, batch.flatMap(x => [x.id, JSON.stringify(x.data)]));
+    }
+  });
+}
 export async function remove(t: string, id: string) {
   return transaction(() => query(`DELETE FROM ${table(t)} WHERE id=?`, [id]));
 }

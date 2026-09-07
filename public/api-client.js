@@ -5,7 +5,15 @@ window.nextechFetch = async (path, options = {}) => {
     throw Error('O endereco do servidor ainda nao foi configurado.');
   }
   if (base && new URL(base).protocol !== 'https:' && !['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw Error('Configure uma API HTTPS.');
-  const response = await fetch(base + path, { ...options, credentials: 'include' });
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 60000);
+  let response;
+  try {
+    response = await fetch(base + path, { ...options, credentials: 'include', signal: options.signal || controller.signal });
+  } catch (error) {
+    if (error.name === 'AbortError') throw Error('O servidor demorou para responder. Aguarde um momento e tente novamente.');
+    throw Error('Nao foi possivel acessar o servidor. Tente novamente em instantes.');
+  } finally { clearTimeout(timer); }
   if (!(response.headers.get('content-type') || '').includes('application/json')) {
     throw Error(`O servidor retornou uma resposta inesperada (HTTP ${response.status}). Tente novamente em instantes.`);
   }
