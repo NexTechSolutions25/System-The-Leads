@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 process.env.DB_DRIVER = "sqlite";
 process.env.DATABASE_PATH = "./data/osm-unit-" + randomUUID() + ".sqlite";
-const { osmLead, osmQuery, OpenStreetMapProvider } =
+const { osmLead, osmQuery, OpenStreetMapProvider, sourceErrorCode } =
   await import("../src/osm.js");
 const { initDB, closeDB, remove } = await import("../src/db.js");
 const input = {
@@ -82,9 +82,11 @@ test('OSM waits for a slot and recovers transient errors without fake data', asy
  await assert.rejects(()=>p.searchCompanies(input),/429/);assert.equal(calls,1);
  await clear();
  globalThis.fetch=async()=>{calls++;throw new TypeError('network unavailable')};
- await assert.rejects(()=>p.searchCompanies(input),/fonte gratuita/);assert.equal(calls,2);
+ await assert.rejects(()=>p.searchCompanies(input),/Falha de conexão/);assert.equal(calls,2);
  await clear();
  globalThis.fetch=async()=>{calls++;return Response.json({elements:[{type:'area',id:1}]})};
  assert.deepEqual(await p.searchCompanies(input),[]);assert.deepEqual(await p.searchCompanies(input),[]);assert.equal(calls,1);
  }finally{globalThis.fetch=original;await closeDB();}
 });
+
+test('Network diagnostics retain safe codes without raw error content',()=>{assert.equal(sourceErrorCode({cause:{code:'ENETUNREACH'},message:'secret'}),'ENETUNREACH');assert.equal(sourceErrorCode({name:'TimeoutError'}),'REQUEST_TIMEOUT');assert.equal(sourceErrorCode({cause:{code:'password-secret'}}),'NETWORK_ERROR');});

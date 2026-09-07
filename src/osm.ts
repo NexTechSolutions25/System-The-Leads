@@ -113,6 +113,11 @@ export function osmLead(e: any, i: LeadSearchInput): ExternalLead | undefined {
     demo: false,
   };
 }
+export function sourceErrorCode(error: any): string {
+  const codes=[error?.cause?.code,error?.code,...(Array.isArray(error?.cause?.errors)?error.cause.errors.map((e:any)=>e.code):[])];
+  const known=codes.find(c=>typeof c==='string' && /^(EAI_AGAIN|ENOTFOUND|ECONNREFUSED|ECONNRESET|ETIMEDOUT|ENETUNREACH|EHOSTUNREACH|UND_ERR_CONNECT_TIMEOUT|CERT_HAS_EXPIRED|UNABLE_TO_VERIFY_LEAF_SIGNATURE)$/.test(c));
+  return known || (error?.name==='TimeoutError' || error?.name==='AbortError' ? 'REQUEST_TIMEOUT' : 'NETWORK_ERROR');
+}
 export class OpenStreetMapProvider implements LeadProvider {
   name = "openstreetmap";
   supportedCountries = ["BR", "PY"];
@@ -134,6 +139,7 @@ export class OpenStreetMapProvider implements LeadProvider {
       "https://overpass.private.coffee/api/interpreter",
     ];
     let d: any;
+    const failures: string[]=[];
     for (let attempt = 0; attempt < endpoints.length; attempt++) {
       // Reserve a slot atomically; a second campaign waits instead of failing.
       const delay = await transaction(async () => {
@@ -159,10 +165,11 @@ export class OpenStreetMapProvider implements LeadProvider {
               Accept: "application/json",
             },
             signal: AbortSignal.timeout(40000),
-          }).catch(() => {
-            throw transient(
-              "A fonte gratuita não respondeu. Tente novamente em alguns minutos.",
-            );
+          }).catch((cause) => {
+            const code=sourceErrorCode(cause);
+            const source=url.hostname;
+            console.error('[osm-source]',JSON.stringify({source,code}));
+            throw transient('Falha de conexão com '+source+' ('+code+').');
           });
           if (!r.ok) {
             await r.body?.cancel();
@@ -210,11 +217,15 @@ export class OpenStreetMapProvider implements LeadProvider {
         });
         break;
       } catch (error) {
+        if ((error as any)?.sourceUnavailable) failures.push((error as Error).message);
         if (
           !(error as any)?.sourceUnavailable ||
           attempt === endpoints.length - 1
         )
-          throw error;
+          {
+            if ((error as any)?.sourceUnavailable) throw new Error(failures.join(" | "));
+            throw error;
+          }
       }
     }
     if (!Array.isArray(d.elements))
