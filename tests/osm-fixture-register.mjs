@@ -7,7 +7,7 @@ if (
 const original = globalThis.fetch;
 globalThis.fetch = async (url, options) => {
   if (
-    !String(url).startsWith("https://overpass.private.coffee/api/interpreter?")
+    !String(url).startsWith("https://maps.mail.ru/osm/tools/overpass/api/interpreter?")
   )
     return original(url, options);
   return Response.json({

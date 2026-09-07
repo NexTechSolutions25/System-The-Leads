@@ -127,7 +127,7 @@ export class OpenStreetMapProvider implements LeadProvider {
           until: Date.now() + 60000,
         });
       });
-      const url = new URL("https://overpass.private.coffee/api/interpreter");
+      const url = new URL("https://maps.mail.ru/osm/tools/overpass/api/interpreter");
       url.searchParams.set("data", query);
       const r = await fetch(url, {
         headers: {

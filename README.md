@@ -209,4 +209,4 @@ Telefone e WhatsApp sao campos distintos. WhatsApp so e preenchido quando contac
 
 A indisponibilidade da API publica gera erro visivel, nunca empresas inventadas. Fixtures sinteticas ficam apenas nos testes isolados.
 
-Endpoint usado: https://overpass.private.coffee/api/interpreter, listado no wiki OpenStreetMap como livre para uso em projetos. A consulta identifica o aplicativo, tem prazo de resposta e nao tenta contornar limitacoes do servidor.
+Endpoint usado: https://maps.mail.ru/osm/tools/overpass/api/interpreter, listado no wiki OpenStreetMap como livre para uso em projetos. A consulta identifica o aplicativo, tem prazo de resposta e nao tenta contornar limitacoes do servidor.
