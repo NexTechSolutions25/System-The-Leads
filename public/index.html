@@ -317,10 +317,12 @@
             <option>site integrado a um painel administrativo</option>
           </select></label
         >
-        <div class="form-grid four">
+        <p class="note" id="capture-limit-help">O limite padrão é 50 empresas por captura. A quantidade depende da cobertura da fonte. Empresas já identificadas na base não geram outro cadastro; telefone e WhatsApp aparecem somente quando publicados.</p>
+          <div class="form-grid four">
           <label
             >Máximo de leads<input
               name="maxLeads"
+                aria-describedby="capture-limit-help"
               type="number"
               min="1"
               max="10000"
