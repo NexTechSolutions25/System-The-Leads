@@ -50,7 +50,7 @@ export async function execute(
         await put("ProviderUsage", usageId, {
           id: usageId,
           runId,
-          provider: "google_places",
+          provider: p.name,
           kind,
           cost,
           at: now(),
@@ -67,7 +67,7 @@ export async function execute(
         await put("ProviderUsage", usageId, {
           id: usageId,
           runId,
-          provider: "google_places",
+          provider: p.name,
           kind,
           cost,
           at: now(),
@@ -78,7 +78,7 @@ export async function execute(
         await put("ProviderUsage", usageId, {
           id: usageId,
           runId,
-          provider: "google_places",
+          provider: p.name,
           kind,
           cost,
           at: now(),
@@ -97,6 +97,7 @@ export async function execute(
     startedAt: run.startedAt || now(),
   });
   const jobs = plan(c);
+  if (p.name === "openstreetmap" && jobs.length !== 1) throw Error("Na fonte gratuita, pesquise uma cidade e no máximo uma palavra-chave por campanha.");
   await updateRun(runId, { totalBatches: jobs.length });
   const bump = async (field: string) => {
     const r = await getRun(runId);

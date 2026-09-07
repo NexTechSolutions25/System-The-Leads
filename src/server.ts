@@ -115,15 +115,15 @@ app.get("/api/status", async (_req, res) => {
     freeMode: config.freeMode,
     queueMode: config.freeMode ? "database" : "redis",
     queueReady: redis,
-    mode: config.key ? "real" : "demonstration",
-    provider: config.key ? config.provider : "demonstration",
+    mode: config.freeMode || config.provider === "openstreetmap" || config.key ? "real" : "demonstration",
+    provider: config.freeMode || config.provider === "openstreetmap" ? "openstreetmap" : config.key ? config.provider : "demonstration",
     keyConfigured: !!config.key,
     storageAuthorized:
       process.env.GOOGLE_PLACES_CRM_STORAGE_AUTHORIZED === "true",
     redis: config.freeMode ? false : redis,
     defaultCountry: process.env.DEFAULT_COUNTRY || "BR",
     defaultLanguage: process.env.DEFAULT_LANGUAGE || "pt-BR",
-    message: config.freeMode ? "Modo gratuito: empresas fictícias, sem APIs pagas. Use Iniciar captação; agendas ficam indisponíveis neste modo." : config.key
+    message: config.freeMode || config.provider === "openstreetmap" ? "Empresas reais via OpenStreetMap, sem chave nem API paga. Telefone e WhatsApp somente quando publicados na fonte. Uma cidade por busca; cobertura limitada." : config.key
       ? "Integração real configurada; uso em CRM exige autorização de armazenamento."
       : "Demonstração: somente empresas fictícias. Configure GOOGLE_PLACES_API_KEY para integrar o provedor real.",
     allowedHosts: config.allowedHosts,
@@ -201,6 +201,7 @@ app.post("/api/campaigns", async (req, res) => {
 app.post("/api/campaigns/:id/run", async (req, res) => {
   const c = await get<Campaign>("Campaign", req.params.id);
   if (!c) return res.status(404).json({ error: "Campanha não encontrada" });
+  if ((config.freeMode || config.provider === "openstreetmap") && plan(c).length !== 1) return res.status(400).json({error:"Na fonte gratuita, escolha uma cidade e no máximo uma palavra-chave por campanha."});
   await ready();
   const r = await createRun(c.id);
   try {
@@ -299,7 +300,7 @@ const view = async (id: string) => ({
 });
 app.get("/api/leads", async (_req, res) =>
   res.json(
-    await Promise.all((await all("CapturedLead")).map((l) => view(l.id))),
+    await Promise.all((await all("CapturedLead")).filter(l => !config.freeMode || !l.demo).map((l) => view(l.id))),
   ),
 );
 app.get("/api/leads/:id/evidence", async (req, res) =>

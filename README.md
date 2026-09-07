@@ -185,7 +185,7 @@ Execute `npm run build:frontend`. Envie o CONTEUDO de `dist-frontend` para a pas
 
 Em `config.js`, preencha `window.NEXTECH_API_URL` com a origem HTTPS da API (sem barra final). Nunca coloque senha ou chave nesse arquivo publico. Os caminhos relativos tambem permitem hospedar o front em subpastas.
 
-No Render configure HOST=0.0.0.0, TRUST_PROXY=1, FRONTEND_ORIGINS com a origem exata HTTPS do front (sem caminho ou barra final) e ALLOWED_HOSTS com o hostname da API personalizada. O hostname automatico RENDER_EXTERNAL_HOSTNAME tambem e aceito. Configure MySQL remoto e REDIS_URL; execute `npm start` no servico web e `npm run worker` em um worker separado. O cadastro inicial remoto continua bloqueado: importe o administrador no banco de destino.
+No Render configure HOST=0.0.0.0, TRUST_PROXY=1, FRONTEND_ORIGINS com a origem exata HTTPS do front (sem caminho ou barra final) e ALLOWED_HOSTS com o hostname da API personalizada. O hostname automatico RENDER_EXTERNAL_HOSTNAME tambem e aceito. No modo gratuito descrito abaixo, configure somente MySQL remoto. Fora dele, configure tambem REDIS_URL; execute `npm start` no servico web e `npm run worker` em um worker separado. O cadastro inicial remoto continua bloqueado: importe o administrador no banco de destino.
 
 Prefira front e API em subdominios HTTPS do mesmo dominio, por exemplo painel.seudominio.com e api.seudominio.com, mantendo COOKIE_CROSS_SITE=false. Se usar dominios diferentes (Hostinger + onrender.com), configure COOKIE_CROSS_SITE=true; navegadores que bloqueiam cookies de terceiros ainda podem impedir o login. A conexao e o login completos devem ser validados com os enderecos reais antes do uso.
 
@@ -195,8 +195,18 @@ Validacao local da separacao: compilacao TypeScript, preflight da origem permiti
 
 No Render, o modo gratuito e ativado automaticamente, a menos que FREE_MODE=false tenha sido definido explicitamente. Para fixar a escolha, use FREE_MODE=true. A fila fica no MySQL ja contratado e o processamento ocorre dentro da API existente. Nao e necessario criar Redis nem Background Worker. O render.yaml atual define somente o servico web Free; nenhuma credencial ou metadado privado do banco e incluido.
 
-Neste modo, GOOGLE_PLACES_API_KEY e ignorada. A captacao gera exclusivamente empresas ficticias e nao faz consultas a APIs pagas. Nao se trata de prospeccao de empresas reais. A Hostinger continua sujeita ao plano que ja existe; esta mudanca nao adiciona servicos pagos nem garante isencao de limites de trafego da hospedagem.
+Neste modo, GOOGLE_PLACES_API_KEY e ignorada. A captacao consulta empresas reais cadastradas no OpenStreetMap, pela API publica Overpass, sem chave ou API paga. Nao existe fallback ficticio em caso de erro ou resultado vazio; registros antigos de demonstracao ficam ocultos na lista de leads gratuita. A Hostinger continua sujeita ao plano que ja existe; esta mudanca nao adiciona servicos pagos nem garante isencao de limites de trafego da hospedagem.
 
 Use Iniciar captacao. Agendas sao recusadas porque o servico gratuito pode suspender. As tarefas ficam persistidas no banco; a API retoma as pendentes quando estiver executando novamente. Pausas e cancelamentos sao verificados durante a execucao. Uma trava com prazo de expiracao evita processamento simultaneo entre instancias durante trocas de deploy; apos encerramento abrupto, a retomada pode aguardar ate dois minutos. Nao ha garantia de execucao continua ou exatamente uma vez em caso de interrupcao externa, mas a deduplicacao de leads permanece ativa.
 
-Validacao: npm run test:free usa banco isolado, Redis inexistente e chave Google ficticia para verificar que a chave e ignorada, tarefas completam com custo e consultas zero, agendas sao recusadas e registros sobrevivem ao reinicio. Os testes gerais continuam disponiveis em npm test.
+Validacao: npm run test:free usa banco isolado, Redis inexistente e chave Google ficticia para verificar que a chave e ignorada, tarefas usam respostas controladas OpenStreetMap com custo zero, agendas sao recusadas e registros sobrevivem ao reinicio. Os testes gerais continuam disponiveis em npm test.
+
+### Fonte gratuita e contatos
+
+Uma cidade e no maximo uma palavra-chave por campanha; ate 100 estabelecimentos por consulta. O painel limita consultas novas a uma por minuto e reutiliza a ultima busca identica por 24 horas. Resultados dependem da cobertura comunitaria; pode haver zero empresas ou nenhum telefone. Nao existe garantia de atualidade, disponibilidade ou quantidade.
+
+Telefone e WhatsApp sao campos distintos. WhatsApp so e preenchido quando contact:whatsapp/whatsapp estiver publicado explicitamente no registro da empresa; telefone comum nao e tratado como WhatsApp. Nao ha envio automatico. Cada resultado inclui o link da origem. Dados: [OpenStreetMap contributors, ODbL](https://www.openstreetmap.org/copyright). Preserve a atribuicao e observe as condicoes da licenca ao redistribuir bases.
+
+A indisponibilidade da API publica gera erro visivel, nunca empresas inventadas. Fixtures sinteticas ficam apenas nos testes isolados.
+
+Endpoint usado: https://overpass.private.coffee/api/interpreter, listado no wiki OpenStreetMap como livre para uso em projetos. A consulta identifica o aplicativo, tem prazo de resposta e nao tenta contornar limitacoes do servidor.

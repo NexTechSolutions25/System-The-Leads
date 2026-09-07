@@ -1,3 +1,4 @@
+import { OpenStreetMapProvider } from "./osm.js";
 import { createHash } from "node:crypto";
 import { config, now } from "./config.js";
 import { phone, safeUrl } from "./normalize.js";
@@ -145,6 +146,7 @@ export class DemoProvider implements LeadProvider {
 }
 // A new licensed provider implements this interface and is registered here.
 export function provider(meter: Meter): LeadProvider {
+  if (config.freeMode || config.provider === "openstreetmap") return new OpenStreetMapProvider(meter);
   if (!config.key) return new DemoProvider();
   if (config.provider !== "google_places")
     throw Error("Provedor não registrado");
