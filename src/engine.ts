@@ -13,6 +13,7 @@ export async function execute(
   runId: string,
   options: {
     provider?: LeadProvider;
+    checkpoint?: () => Promise<void>;
     rateLimit?: () => Promise<void>;
   } = {},
 ) {
@@ -23,8 +24,10 @@ export async function execute(
   if (["concluída", "concluída parcialmente", "cancelada"].includes(run.status))
     return;
   const check = async () => {
+    await options.checkpoint?.();
     let r = await getRun(runId);
     while (r.control === "paused") {
+      await options.checkpoint?.();
       await sleep(1000);
       r = await getRun(runId);
     }
@@ -231,6 +234,7 @@ export async function execute(
       progress: 100,
     });
   } catch (e) {
+    if ((e as any)?.code === "FREE_INTERRUPTED") throw e;
     if (e instanceof Stop) {
       const cancelled = e.message === "cancelled";
       await updateRun(runId, {

@@ -69,7 +69,7 @@ function render() {
   $("#m-cost").textContent =
     "$" + runs.reduce((n, r) => n + r.cost, 0).toFixed(2);
   $("#mode-banner").textContent = status.message || "Conectando ao servidor…";
-  $("#queue-health").textContent = status.redis
+  $("#queue-health").textContent = status.queueMode === "database" ? (status.queueReady ? "Fila gratuita pronta" : "Fila indisponível") : status.redis
     ? "● Redis conectado"
     : "○ Redis desconectado";
   $("#runs").innerHTML = runs.length
@@ -96,7 +96,7 @@ function render() {
     ? campaigns
         .map(
           (c) =>
-            `<article class="card"><div class="card-top"><span class="chip">${esc(c.country)} · ${esc(c.scope)}</span><span class="badge">${c.maxLeads} leads</span></div><h2>${esc(c.name)}</h2><p>${esc(c.region || "Busca nacional")} ${c.cities.length ? "· " + esc(c.cities.join(", ")) : ""}</p><p>${esc(c.segment)} · ${esc(c.service)}</p><p>Corte ${c.minScore} · Máx. ${c.maxRequests} consultas · USD ${c.maxCost.toFixed(2)}</p><p>${c.schedule ? `${esc(c.schedule.frequency)} · ${esc(c.schedule.time)} · ${esc(c.schedule.timezone)} · ${c.scheduling?.active ? "Ativo" : "Inativo"}` : "Execução manual"}</p><div class="actions"><button class="primary" data-action="start" data-id="${c.id}">Iniciar captação</button>${c.schedule ? `<button data-action="${c.scheduling?.active ? "unschedule" : "schedule"}" data-id="${c.id}">${c.scheduling?.active ? "Pausar agenda" : "Ativar agenda"}</button>` : ""}</div></article>`,
+            `<article class="card"><div class="card-top"><span class="chip">${esc(c.country)} · ${esc(c.scope)}</span><span class="badge">${c.maxLeads} leads</span></div><h2>${esc(c.name)}</h2><p>${esc(c.region || "Busca nacional")} ${c.cities.length ? "· " + esc(c.cities.join(", ")) : ""}</p><p>${esc(c.segment)} · ${esc(c.service)}</p><p>Corte ${c.minScore} · Máx. ${c.maxRequests} consultas · USD ${c.maxCost.toFixed(2)}</p><p>${c.schedule ? `${esc(c.schedule.frequency)} · ${esc(c.schedule.time)} · ${esc(c.schedule.timezone)} · ${c.scheduling?.active ? "Ativo" : "Inativo"}` : "Execução manual"}</p><div class="actions"><button class="primary" data-action="start" data-id="${c.id}">Iniciar captação</button>${c.schedule && !status.freeMode ? `<button data-action="${c.scheduling?.active ? "unschedule" : "schedule"}" data-id="${c.id}">${c.scheduling?.active ? "Pausar agenda" : "Ativar agenda"}</button>` : ""}</div></article>`,
         )
         .join("")
     : empty(
@@ -121,7 +121,7 @@ function render() {
         "Aprove um lead e escolha “Transferir para pipeline”.",
       );
   $("#settings-status").innerHTML =
-    `<p>Modo: <b>${esc(status.mode)}</b> · Provedor: <b>${esc(status.provider)}</b> · Redis: <b>${status.redis ? "conectado" : "desconectado"}</b></p><p>Chave configurada: ${status.keyConfigured ? "sim" : "não"} · Armazenamento autorizado: ${status.storageAuthorized ? "sim" : "não"}</p><p>Domínios autorizados para análise: ${esc((status.allowedHosts || []).join(", ") || "nenhum")}</p><p>Estimativa por consulta: busca USD ${status.searchCost || 0}; detalhes USD ${status.detailsCost || 0}. Confira os valores de faturamento do seu contrato.</p>`;
+    `<p>Modo: <b>${esc(status.mode)}</b> · Provedor: <b>${esc(status.provider)}</b> · Fila: <b>${status.queueMode === "database" ? "gratuita no banco" : status.redis ? "Redis conectado" : "Redis desconectado"}</b></p><p>Chave configurada: ${status.keyConfigured ? "sim" : "não"} · Armazenamento autorizado: ${status.storageAuthorized ? "sim" : "não"}</p><p>Domínios autorizados para análise: ${esc((status.allowedHosts || []).join(", ") || "nenhum")}</p><p>Estimativa por consulta: busca USD ${status.searchCost || 0}; detalhes USD ${status.detailsCost || 0}. Confira os valores de faturamento do seu contrato.</p>`;
 }
 let refreshing = false;
 async function refresh() {

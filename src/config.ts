@@ -1,7 +1,9 @@
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 import "dotenv/config";
+const freeMode = process.env.FREE_MODE === "true" || (process.env.FREE_MODE !== "false" && process.env.RENDER === "true");
 export const config = {
+  freeMode,
   dbDriver: process.env.DB_DRIVER || "mysql",
   mysql: {
     host: process.env.MYSQL_HOST || "127.0.0.1",
@@ -10,7 +12,7 @@ export const config = {
     user: process.env.MYSQL_USER || "root",
     password: process.env.MYSQL_PASSWORD || "",
   },
-  key: process.env.GOOGLE_PLACES_API_KEY?.trim() || "",
+  key: freeMode ? "" : process.env.GOOGLE_PLACES_API_KEY?.trim() || "",
   provider: process.env.LEAD_PROVIDER || "google_places",
   redis: process.env.REDIS_URL || "redis://127.0.0.1:6379",
   db: process.env.DATABASE_PATH || "./data/leads.sqlite",

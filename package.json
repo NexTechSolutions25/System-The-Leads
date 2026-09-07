@@ -18,7 +18,8 @@
     "worker:dev": "tsx watch --include .env src/worker.ts",
     "test:migration": "node tests/migration-smoke.mjs",
     "build": "node scripts/build.mjs",
-    "build:frontend": "node scripts/build-frontend.mjs"
+    "build:frontend": "node scripts/build-frontend.mjs",
+    "test:free": "node tests/free-mode-smoke.mjs"
   },
   "dependencies": {
     "bullmq": "^5.58.0",

@@ -18,7 +18,8 @@ import {
   closeDB,
 } from "./db.js";
 import { seedGeo, cities, regions, campaignCities, plan } from "./geography.js";
-import { ready, queue, connection } from "./queue.js";
+const backend = config.freeMode ? await import("./free-queue.js") : await import("./queue.js");
+const { ready, queue } = backend;
 import { suppress } from "./leads.js";
 import { whatsappLink } from "./normalize.js";
 import type { Campaign } from "./types.js";
@@ -111,20 +112,23 @@ app.get("/api/status", async (_req, res) => {
   } catch {}
   res.json({
     database: config.dbDriver,
+    freeMode: config.freeMode,
+    queueMode: config.freeMode ? "database" : "redis",
+    queueReady: redis,
     mode: config.key ? "real" : "demonstration",
     provider: config.key ? config.provider : "demonstration",
     keyConfigured: !!config.key,
     storageAuthorized:
       process.env.GOOGLE_PLACES_CRM_STORAGE_AUTHORIZED === "true",
-    redis,
+    redis: config.freeMode ? false : redis,
     defaultCountry: process.env.DEFAULT_COUNTRY || "BR",
     defaultLanguage: process.env.DEFAULT_LANGUAGE || "pt-BR",
-    message: config.key
+    message: config.freeMode ? "Modo gratuito: empresas fictícias, sem APIs pagas. Use Iniciar captação; agendas ficam indisponíveis neste modo." : config.key
       ? "Integração real configurada; uso em CRM exige autorização de armazenamento."
       : "Demonstração: somente empresas fictícias. Configure GOOGLE_PLACES_API_KEY para integrar o provedor real.",
     allowedHosts: config.allowedHosts,
-    searchCost: config.searchCost,
-    detailsCost: config.detailsCost,
+    searchCost: config.freeMode ? 0 : config.searchCost,
+    detailsCost: config.freeMode ? 0 : config.detailsCost,
   });
 });
 app.get("/api/locations", (req, res) => {
@@ -418,11 +422,12 @@ app.use(
 const server = app.listen(config.port, config.host, () =>
   console.log(`NexTech Leads em http://${config.host}:${config.port}`),
 );
+if (config.freeMode) (await import("./free-queue.js")).start();
 for (const signal of ["SIGINT", "SIGTERM"])
   process.on(signal, async () => {
     server.close();
     await queue.close();
-    connection.disconnect();
+    if (!config.freeMode) (await import("./queue.js")).connection.disconnect();
     await closeDB();
     process.exit(0);
   });

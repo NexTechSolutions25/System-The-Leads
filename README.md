@@ -190,3 +190,13 @@ No Render configure HOST=0.0.0.0, TRUST_PROXY=1, FRONTEND_ORIGINS com a origem e
 Prefira front e API em subdominios HTTPS do mesmo dominio, por exemplo painel.seudominio.com e api.seudominio.com, mantendo COOKIE_CROSS_SITE=false. Se usar dominios diferentes (Hostinger + onrender.com), configure COOKIE_CROSS_SITE=true; navegadores que bloqueiam cookies de terceiros ainda podem impedir o login. A conexao e o login completos devem ser validados com os enderecos reais antes do uso.
 
 Validacao local da separacao: compilacao TypeScript, preflight da origem permitida, bloqueio de origem desconhecida e presenca dos recursos estaticos passaram. Nao representa um teste de hospedagem real.
+
+## Modo gratuito no Render
+
+No Render, o modo gratuito e ativado automaticamente, a menos que FREE_MODE=false tenha sido definido explicitamente. Para fixar a escolha, use FREE_MODE=true. A fila fica no MySQL ja contratado e o processamento ocorre dentro da API existente. Nao e necessario criar Redis nem Background Worker. O render.yaml atual define somente o servico web Free; nenhuma credencial ou metadado privado do banco e incluido.
+
+Neste modo, GOOGLE_PLACES_API_KEY e ignorada. A captacao gera exclusivamente empresas ficticias e nao faz consultas a APIs pagas. Nao se trata de prospeccao de empresas reais. A Hostinger continua sujeita ao plano que ja existe; esta mudanca nao adiciona servicos pagos nem garante isencao de limites de trafego da hospedagem.
+
+Use Iniciar captacao. Agendas sao recusadas porque o servico gratuito pode suspender. As tarefas ficam persistidas no banco; a API retoma as pendentes quando estiver executando novamente. Pausas e cancelamentos sao verificados durante a execucao. Uma trava com prazo de expiracao evita processamento simultaneo entre instancias durante trocas de deploy; apos encerramento abrupto, a retomada pode aguardar ate dois minutos. Nao ha garantia de execucao continua ou exatamente uma vez em caso de interrupcao externa, mas a deduplicacao de leads permanece ativa.
+
+Validacao: npm run test:free usa banco isolado, Redis inexistente e chave Google ficticia para verificar que a chave e ignorada, tarefas completam com custo e consultas zero, agendas sao recusadas e registros sobrevivem ao reinicio. Os testes gerais continuam disponiveis em npm test.
