@@ -1,5 +1,5 @@
 import { phone, safeUrl, normalize } from "./normalize.js";
-import { now } from "./config.js";
+import { now, sleep } from "./config.js";
 import { regions } from "./geography.js";
 import { get, put, transaction } from "./db.js";
 import type { Meter } from "./providers.js";
@@ -107,7 +107,10 @@ export class OpenStreetMapProvider implements LeadProvider {
   supportedCountries = ["BR", "PY"];
   nextPageToken = undefined;
   private records = new Map<string, ExternalLead>();
-  constructor(private meter: Meter) {}
+  constructor(
+    private meter: Meter,
+    private wait: (ms: number) => Promise<unknown> = sleep,
+  ) {}
   async searchCompanies(i: LeadSearchInput) {
     const query = osmQuery(i);
     const cached = await get("AppMeta", "osm-cache");
@@ -115,57 +118,94 @@ export class OpenStreetMapProvider implements LeadProvider {
       for (const l of cached.rows) this.records.set(l.externalId, l);
       return cached.rows as ExternalLead[];
     }
-    const d = await this.meter("search", 0, async () => {
-      await transaction(async () => {
+    const endpoints = [
+      "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+      "https://overpass.private.coffee/api/interpreter",
+    ];
+    let d: any;
+    for (let attempt = 0; attempt < endpoints.length; attempt++) {
+      // Reserve a slot atomically; a second campaign waits instead of failing.
+      const delay = await transaction(async () => {
         const limit = await get("AppMeta", "osm-rate");
-        if (limit?.until > Date.now())
-          throw Error(
-            "Este painel limita a fonte gratuita a uma busca por minuto. Aguarde e tente novamente.",
-          );
+        const start = Math.max(Date.now(), Number(limit?.until) || 0);
         await put("AppMeta", "osm-rate", {
           id: "osm-rate",
-          until: Date.now() + 60000,
+          until: start + 60000,
         });
+        return Math.max(0, start - Date.now());
       });
-      const url = new URL("https://maps.mail.ru/osm/tools/overpass/api/interpreter");
-      url.searchParams.set("data", query);
-      const r = await fetch(url, {
-        headers: {
-          "User-Agent":
-            "NexTech-Leads/1.0 (+https://github.com/NexTechSolutions25/System-The-Leads)",
-          Accept: "application/json",
-        },
-        signal: AbortSignal.timeout(40000),
-      }).catch(() => {
-        throw Error(
-          "A fonte gratuita não respondeu a tempo. Tente novamente mais tarde.",
-        );
-      });
-      if (!r.ok)
-        throw Error(
-          `Fonte gratuita indisponível (HTTP ${r.status}). Tente novamente mais tarde.`,
-        );
-      const reader = r.body?.getReader();
-      if (!reader) throw Error("Resposta vazia da fonte gratuita");
-      const chunks: Uint8Array[] = [];
-      let size = 0;
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        size += value.length;
-        if (size > 8000000) {
-          await reader.cancel();
-          throw Error("Resposta grande demais; refine a busca.");
-        }
-        chunks.push(value);
+      if (delay) await this.wait(delay);
+      try {
+        d = await this.meter("search", 0, async () => {
+          const transient = (message: string) =>
+            Object.assign(new Error(message), { sourceUnavailable: true });
+          const url = new URL(endpoints[attempt]);
+          url.searchParams.set("data", query);
+          const r = await fetch(url, {
+            headers: {
+              "User-Agent":
+                "NexTech-Leads/1.0 (+https://github.com/NexTechSolutions25/System-The-Leads)",
+              Accept: "application/json",
+            },
+            signal: AbortSignal.timeout(40000),
+          }).catch(() => {
+            throw transient(
+              "A fonte gratuita não respondeu. Tente novamente em alguns minutos.",
+            );
+          });
+          if (!r.ok) {
+            await r.body?.cancel();
+            const message =
+              "Fonte gratuita indisponível (HTTP " +
+              r.status +
+              "). Tente novamente em alguns minutos.";
+            // Do not switch servers to get around access restrictions or quotas.
+            if ([502, 503, 504].includes(r.status)) throw transient(message);
+            throw Error(message);
+          }
+          const reader = r.body?.getReader();
+          if (!reader)
+            throw transient("A fonte gratuita retornou uma resposta vazia.");
+          const chunks: Uint8Array[] = [];
+          let size = 0;
+          while (true) {
+            const { done, value } = await reader.read().catch(() => {
+              throw transient("A conexão com a fonte foi interrompida.");
+            });
+            if (done) break;
+            size += value.length;
+            if (size > 8000000) {
+              await reader.cancel();
+              throw Error("Resposta grande demais; refine a busca.");
+            }
+            chunks.push(value);
+          }
+          let result: any;
+          try {
+            result = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+          } catch {
+            throw Error("A fonte gratuita retornou uma resposta inválida.");
+          }
+          if (result.remark) {
+            if (/timed? ?out|timeout/i.test(result.remark))
+              throw transient(
+                "A fonte gratuita não concluiu a consulta a tempo.",
+              );
+            throw Error(
+              "A fonte gratuita não concluiu a consulta. Refine a busca.",
+            );
+          }
+          return result;
+        });
+        break;
+      } catch (error) {
+        if (
+          !(error as any)?.sourceUnavailable ||
+          attempt === endpoints.length - 1
+        )
+          throw error;
       }
-      const result = JSON.parse(Buffer.concat(chunks).toString("utf8"));
-      if (result.remark)
-        throw Error(
-          "A fonte gratuita não concluiu a consulta. Tente novamente mais tarde.",
-        );
-      return result;
-    });
+    }
     if (!Array.isArray(d.elements))
       throw Error("Resposta inválida da fonte gratuita");
     if (!d.elements.some((e: any) => e.type === "area"))

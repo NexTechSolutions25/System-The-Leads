@@ -210,3 +210,5 @@ Telefone e WhatsApp sao campos distintos. WhatsApp so e preenchido quando contac
 A indisponibilidade da API publica gera erro visivel, nunca empresas inventadas. Fixtures sinteticas ficam apenas nos testes isolados.
 
 Endpoint usado: https://maps.mail.ru/osm/tools/overpass/api/interpreter, listado no wiki OpenStreetMap como livre para uso em projetos. A consulta identifica o aplicativo, tem prazo de resposta e nao tenta contornar limitacoes do servidor.
+
+A captura aguarda o intervalo de um minuto em vez de falhar por consultas proximas. Em falhas de rede, timeout ou HTTP 502/503/504, tenta uma vez a instancia Private.coffee, respeitando o mesmo intervalo. Respostas 403/406/429 nao acionam troca de servidor. Erros finais aparecem diretamente no monitor.
