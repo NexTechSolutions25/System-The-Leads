@@ -1,6 +1,6 @@
 import { phone, safeUrl, normalize } from "./normalize.js";
 import { now, sleep } from "./config.js";
-import { regions } from "./geography.js";
+import { regions, cities } from "./geography.js";
 import { get, put, transaction } from "./db.js";
 import type { Meter } from "./providers.js";
 import type { LeadProvider, LeadSearchInput, ExternalLead } from "./types.js";
@@ -39,6 +39,17 @@ export function osmQuery(i: LeadSearchInput) {
         ']["admin_level"="2"]->.country;rel(area.country)["boundary"="administrative"]["admin_level"="4"]["name"~' +
         quote("^" + escapeRegex(i.region) + "$") +
         ",i];map_to_area->.region;";
+  const municipality = cities.find(
+    (c) =>
+      c.country === i.country &&
+      normalize(c.region) === normalize(i.region) &&
+      normalize(c.name) === normalize(i.city),
+  );
+  if (i.country === "BR" && municipality)
+    return `[out:json][timeout:25][maxsize:16777216];
+area["IBGE:GEOCODIGO"=${quote(municipality.id)}]["admin_level"="8"]->.city;
+.city out tags;
+nwr(area.city)["name"]${selector};out center tags 100;`;
   return `[out:json][timeout:25][maxsize:16777216];
 ${regionQuery}
 rel(area.region)["boundary"="administrative"]["admin_level"~"^(6|7|8|9)$"]["name"~${quote("^" + escapeRegex(i.city) + "$")},i];map_to_area->.city;

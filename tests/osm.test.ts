@@ -59,8 +59,8 @@ test("OSM only uses published contact fields and preserves source", () => {
 });
 test("OSM city boundaries, segment and literal escaping", () => {
   const q = osmQuery(input);
-  assert.ok(q.includes("BR-MS"));
-  assert.ok(q.includes("map_to_area->.city"));
+  assert.ok(q.includes("5003702"));
+  assert.ok(q.includes("IBGE:GEOCODIGO"));
   assert.ok(q.includes('["shop"="convenience"]'));
   assert.ok(
     osmQuery({ ...input, keyword: 'a.*"' }).includes(
